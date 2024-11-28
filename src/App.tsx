@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { strength, agility, intelligence, universal } from './heroes';
+import { strength, agility, intelligence, universal, heroes } from './heroes';
 import './App.css';
 
 const getInitialIdsFromUrl = (): number[] => {
@@ -48,15 +48,13 @@ function App() {
 
   const isEditMode = mode !== 'overlay';
 
-  return (
+  return isEditMode ? (
     <>
-      {isEditMode ? <div className="captains-mode-bg" /> : null}
+      <div className="captains-mode-bg" />
 
-      {isEditMode ? (
-        <button className="copy-url-button" onClick={handleCopyToClipboard}>
-          Copy overlay url
-        </button>
-      ) : null}
+      <button className="copy-url-button" onClick={handleCopyToClipboard}>
+        Copy overlay url
+      </button>
 
       <div className="overlay">
         <div className="hero-section">
@@ -116,7 +114,43 @@ function App() {
         </div>
       </div>
     </>
+  ) : (
+    <OverlayView />
   );
 }
+
+type Hero = {
+  name: string;
+  id: number;
+};
+
+const lookupObject: { [id: string]: Hero } = Object.values(heroes).reduce(
+  (acc, obj) => {
+    acc[obj.id] = obj;
+    return acc;
+  },
+  {} as { [id: string]: Hero }
+);
+
+const OverlayView = () => {
+  const [bannedHeroIds] = React.useState<number[]>(getInitialIdsFromUrl);
+
+  return (
+    <>
+      <div className="commentator-mode-bg" />
+      <div className="ban-column">
+        {bannedHeroIds.map(id => (
+          <div className="ban-avatar">
+            <img src={getIconPath(lookupObject[id].name)} />
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+const getIconPath = (name: string) => {
+  return `${name.replace(' ', '_')}_icon.webp`;
+};
 
 export default App;
