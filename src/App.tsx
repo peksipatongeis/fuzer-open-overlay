@@ -154,7 +154,6 @@ const OverlayView = () => {
 
   return (
     <>
-      <div className="commentator-mode-bg" />
       <div>
         {chunkedIds.map(chunk => (
           <div className="ban-column">
