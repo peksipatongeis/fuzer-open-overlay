@@ -1,0 +1,72 @@
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+
+}
+
+.captains-mode-bg {
+  position: fixed;
+  inset: 0;
+  background-image: url('./background.jpg');
+  background-size: cover;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.hero-avatar {
+  width: 7.85%;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 1.35%;
+}
+
+.hero-avatar::after {
+  display: block;
+  content: '';
+  padding-top: 174%;
+}
+
+.is-banned {
+  background: rgba(128, 0, 32, 0.75);
+  outline: 1px solid rgba(128, 0, 32, 0.75);
+}
+
+.hero-section {
+  width: 28.9%;
+  display: flex;
+  gap: 1.35%;
+  flex-wrap: wrap;
+  position: absolute;
+  top: 19.4%;
+  left: 7%;
+}
+
+.hero-section:nth-child(2) {
+  left: 37.9%;
+}
+
+.hero-section:nth-child(3) {
+  left: 7%;
+  top: 45.9%;
+}
+
+.hero-section:nth-child(4) {
+  left: 37.9%;
+  top: 45.9%;
+}
+
+.copy-url-button {
+  position: fixed;
+  top: 1%;
+  right: 1%;
+}
