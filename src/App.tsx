@@ -132,16 +132,37 @@ const lookupObject: { [id: string]: Hero } = Object.values(heroes).reduce(
   {} as { [id: string]: Hero }
 );
 
+function sliceArray<T>(
+  arr: T[],
+  maxSize: number = 5,
+  maxTotal: number = 20
+): T[][] {
+  // Ensure the array is sliced into chunks of maxSize, but limit the total number of items
+  const totalItemsToInclude = Math.min(arr.length, maxTotal);
+  const result: T[][] = [];
+
+  for (let i = 0; i < totalItemsToInclude; i += maxSize) {
+    result.push(arr.slice(i, i + maxSize));
+  }
+
+  return result;
+}
+
 const OverlayView = () => {
   const [bannedHeroIds] = React.useState<number[]>(getInitialIdsFromUrl);
+  const chunkedIds = sliceArray(bannedHeroIds);
 
   return (
     <>
       <div className="commentator-mode-bg" />
-      <div className="ban-column">
-        {bannedHeroIds.map(id => (
-          <div className="ban-avatar">
-            <img src={getIconPath(lookupObject[id].name)} />
+      <div>
+        {chunkedIds.map(chunk => (
+          <div className="ban-column">
+            {chunk.map(id => (
+              <div className="ban-avatar">
+                <img src={getIconPath(lookupObject[id].name)} />
+              </div>
+            ))}
           </div>
         ))}
       </div>
