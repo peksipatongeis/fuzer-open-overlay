@@ -8,15 +8,23 @@ body {
 
 }
 
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .captains-mode-bg {
-  position: fixed;
+  position: absolute;
   inset: 0;
   background-image: url('/background.jpg');
   background-size: cover;
 }
 
 .commentator-mode-bg {
-  position: fixed;
+  position: absolute;
   inset: 0;
   background-image: url('/juontaja-view.jpg');
   background-size: cover;
@@ -132,4 +140,11 @@ body {
   height: 100%;
   filter: brightness(50%);
   border-radius: 4px;
+}
+
+.edit-mode-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }

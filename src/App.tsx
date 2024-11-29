@@ -7,7 +7,7 @@ const getInitialIdsFromUrl = (): number[] => {
   const idsParam = urlParams.get('ids');
 
   if (idsParam) {
-    return idsParam.split(',').map(id => parseInt(id.trim()));
+    return idsParam.split(',').map((id) => parseInt(id.trim()));
   }
 
   return [];
@@ -29,11 +29,11 @@ function App() {
     const isBanned = bannedHeroIds.includes(id);
 
     if (isBanned) {
-      setBannedHeroIds(bannedIds =>
-        bannedIds.filter(bannedId => bannedId !== id)
+      setBannedHeroIds((bannedIds) =>
+        bannedIds.filter((bannedId) => bannedId !== id)
       );
     } else {
-      setBannedHeroIds(bannedIds => [...bannedIds, id]);
+      setBannedHeroIds((bannedIds) => [...bannedIds, id]);
     }
   };
 
@@ -49,7 +49,7 @@ function App() {
   const isEditMode = mode !== 'overlay';
 
   return isEditMode ? (
-    <>
+    <div className="edit-mode-wrapper">
       <div className="captains-mode-bg" />
 
       <button className="copy-url-button" onClick={handleCopyToClipboard}>
@@ -58,7 +58,7 @@ function App() {
 
       <div className="overlay">
         <div className="hero-section">
-          {strength.map(hero => (
+          {strength.map((hero) => (
             <div
               key={hero.id}
               className={
@@ -72,7 +72,7 @@ function App() {
         </div>
 
         <div className="hero-section">
-          {agility.map(hero => (
+          {agility.map((hero) => (
             <div
               key={hero.id}
               className={
@@ -86,7 +86,7 @@ function App() {
         </div>
 
         <div className="hero-section">
-          {intelligence.map(hero => (
+          {intelligence.map((hero) => (
             <div
               key={hero.id}
               className={
@@ -100,7 +100,7 @@ function App() {
         </div>
 
         <div className="hero-section">
-          {universal.map(hero => (
+          {universal.map((hero) => (
             <div
               key={hero.id}
               className={
@@ -113,7 +113,7 @@ function App() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   ) : (
     <OverlayView />
   );
@@ -155,9 +155,9 @@ const OverlayView = () => {
   return (
     <>
       <div>
-        {chunkedIds.map(chunk => (
+        {chunkedIds.map((chunk) => (
           <div className="ban-column">
-            {chunk.map(id => (
+            {chunk.map((id) => (
               <div className="ban-avatar">
                 <img src={getIconPath(lookupObject[id].name)} />
               </div>
