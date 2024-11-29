@@ -162,8 +162,20 @@ const OverlayView = () => {
   const [bannedHeroIds] = React.useState<number[]>(getInitialIdsFromUrl);
   const chunkedIds = sliceArray(bannedHeroIds);
 
+  const navigateToEdit = () => {
+    const url = window.location.href;
+
+    const urlObj = new URL(url);
+    if (urlObj.searchParams.get('mode') === 'overlay') {
+      urlObj.searchParams.set('mode', 'edit');
+    }
+
+    window.location.href = urlObj.toString();
+  };
+
   return (
     <>
+      <div className="click-overlay" onClick={navigateToEdit} />
       <div>
         {chunkedIds.map((chunk, i) => (
           <div key={i} className="ban-column">
