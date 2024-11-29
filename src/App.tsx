@@ -165,10 +165,10 @@ const OverlayView = () => {
   return (
     <>
       <div>
-        {chunkedIds.map((chunk) => (
-          <div className="ban-column">
+        {chunkedIds.map((chunk, i) => (
+          <div key={i} className="ban-column">
             {chunk.map((id) => (
-              <div className="ban-avatar">
+              <div key={id} className="ban-avatar">
                 <img src={getIconPath(lookupObject[id].name)} />
               </div>
             ))}
