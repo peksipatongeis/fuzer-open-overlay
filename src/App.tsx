@@ -38,10 +38,7 @@ function App() {
   };
 
   const handleCopyToClipboard = () => {
-    const url = new URL(window.location.href);
-
-    url.searchParams.set('ids', bannedHeroIds.join(','));
-    url.searchParams.set('mode', 'overlay');
+    const url = getOverlayUrl(bannedHeroIds);
 
     navigator.clipboard.writeText(url.toString());
   };
@@ -52,9 +49,13 @@ function App() {
     <div className="edit-mode-wrapper">
       <div className="captains-mode-bg" />
 
-      <button className="copy-url-button" onClick={handleCopyToClipboard}>
-        Copy overlay url
-      </button>
+      <div className="action-wrapper">
+        <button onClick={() => setBannedHeroIds([])}>Clear selection</button>
+        <button className="copy-url-button" onClick={handleCopyToClipboard}>
+          Copy overlay URL
+        </button>
+        <a href={getOverlayUrl(bannedHeroIds)}>Link to Overlay</a>
+      </div>
 
       <div className="overlay">
         <div className="hero-section">
@@ -118,6 +119,15 @@ function App() {
     <OverlayView />
   );
 }
+
+const getOverlayUrl = (bannedHeroIds: number[]) => {
+  const url = new URL(window.location.href);
+
+  url.searchParams.set('ids', bannedHeroIds.join(','));
+  url.searchParams.set('mode', 'overlay');
+
+  return url.toString();
+};
 
 type Hero = {
   name: string;

@@ -80,12 +80,6 @@ body {
   top: 45.9%;
 }
 
-.copy-url-button {
-  position: fixed;
-  top: 1%;
-  right: 1%;
-}
-
 .ban-column {
   height: 25%;
   width: 4.4%;
@@ -147,4 +141,17 @@ body {
   width: 100%;
   aspect-ratio: 16 / 9;
   height: auto;
+}
+
+.action-wrapper {
+  position: fixed;
+  top: 1%;
+  right: 1%;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.action-wrapper > *:not(:last-child) {
+  margin-right: 16px;
 }
